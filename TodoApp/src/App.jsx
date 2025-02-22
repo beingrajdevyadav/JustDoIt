@@ -73,6 +73,21 @@ function App() {
         <button onClick={addTask}>Add Task</button>
       </div>
 
+{/* todo list container  */}
+<div className="task-list">
+  {
+    tasks.map((t, index)=>(
+<div className="task" key={t.id}>
+  <h3>{t.text}</h3>
+  <button onClick={()=>{deleteTask(index)}}>Delete</button>
+  <button onClick={()=>{toggleTask(index)}}>Done</button>
+</div>
+
+    ))
+  }
+
+
+</div>
 
       {/* footer  */}
       <footer>
