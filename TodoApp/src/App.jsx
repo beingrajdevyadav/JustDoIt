@@ -21,16 +21,22 @@ function App() {
     const addTask = ()=>{
       if(task.trim() !== ""){
         setTasks([...tasks, {
-        completed: false, 
+        completed:false, 
         text: task, 
         id: Date.now()
-        }]);
+        }
+      ]);
 
         setTask("");
       }
     };
 
 
+    // toggle task function
+    const toggleTask = (index)=>{
+      const newTasks = tasks.map((t,i)=> i === index ? {...t, completed: !t.completed} : t);
+      setTasks(newTasks);
+    }
   })
   return (
     <>
