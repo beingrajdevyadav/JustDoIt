@@ -7,37 +7,48 @@ function App() {
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
+  })
 
-    // to get and hold input field value
-    const [task, setTask] = useState("");
+  // to get and hold input field value
+  const [task, setTask] = useState("");
 
-    // to store tasks list in localStorage() after each task updation
-    useEffect(() => {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
+  // to store tasks list in localStorage() after each task updation
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
 
-    // function to add task
-    const addTask = ()=>{
-      if(task.trim() !== ""){
-        setTasks([...tasks, {
-        completed:false, 
-        text: task, 
+  // function to add task
+  const addTask = () => {
+    if (task.trim() !== "") {
+      setTasks([...tasks, {
+        completed: false,
+        text: task,
         id: Date.now()
-        }
+      }
       ]);
 
-        setTask("");
-      }
-    };
-
-
-    // toggle task function
-    const toggleTask = (index)=>{
-      const newTasks = tasks.map((t,i)=> i === index ? {...t, completed: !t.completed} : t);
-      setTasks(newTasks);
+      setTask("");
     }
-  })
+  };
+
+
+  // toggle task function
+  const toggleTask = (index) => {
+    const newTasks = tasks.map((t, i) => i === index ? { ...t, completed: !t.completed } : t);
+    setTasks(newTasks);
+  }
+
+
+// to delete task function
+const deleteTask = (index) =>{
+  const remainedTasks = tasks.filter((t,i)=> i !== index);
+  setTasks(remainedTasks);
+}
+
+
+
+
   return (
     <>
       <h1>Just Do It</h1>
