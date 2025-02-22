@@ -15,6 +15,9 @@ function App() {
   // to store tasks list in localStorage() after each task updation
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    // check successful insertion of task
+    console.log(tasks);
   }, [tasks]);
 
 
@@ -30,6 +33,8 @@ function App() {
 
       setTask("");
     }
+
+    
   };
 
 
@@ -40,18 +45,39 @@ function App() {
   }
 
 
-// to delete task function
-const deleteTask = (index) =>{
-  const remainedTasks = tasks.filter((t,i)=> i !== index);
-  setTasks(remainedTasks);
-}
+  // to delete task function
+  const deleteTask = (index) => {
+    const remainedTasks = tasks.filter((t, i) => i !== index);
+    setTasks(remainedTasks);
+  }
 
 
 
 
   return (
     <>
-      <h1>Just Do It</h1>
+      {/* header  */}
+      <header>
+        <h1>Just Do It</h1>
+      </header>
+
+      {/*  form  */}
+      <div className="form">
+        <input 
+        type="text" 
+        value={task} 
+        onChange={(e) => setTask(e.target.value)}
+        placeholder='Add a task here '
+        />
+
+        <button onClick={addTask}>Add Task</button>
+      </div>
+
+
+      {/* footer  */}
+      <footer>
+        <p>Just Do It By Rajdev Yadav </p>
+      </footer>
     </>
   )
 }
