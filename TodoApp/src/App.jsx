@@ -4,7 +4,6 @@ import './App.css'
 
 function App() {
   
-
   return (
     <>
       <h1>Just Do It</h1>
