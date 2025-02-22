@@ -17,7 +17,7 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
     // check successful insertion of task
-    console.log(tasks);
+    // console.log(tasks);
   }, [tasks]);
 
 
@@ -34,7 +34,7 @@ function App() {
       setTask("");
     }
 
-    
+
   };
 
 
@@ -63,31 +63,31 @@ function App() {
 
       {/*  form  */}
       <div className="form">
-        <input 
-        type="text" 
-        value={task} 
-        onChange={(e) => setTask(e.target.value)}
-        placeholder='Add a task here '
+        <input
+          type="text"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          placeholder='Add a task here '
         />
 
         <button onClick={addTask}>Add Task</button>
       </div>
 
-{/* todo list container  */}
-<div className="task-list">
-  {
-    tasks.map((t, index)=>(
-<div className="task" key={t.id}>
-  <h3>{t.text}</h3>
-  <button onClick={()=>{deleteTask(index)}}>Delete</button>
-  <button onClick={()=>{toggleTask(index)}}>Done</button>
-</div>
+      {/* todo list container  */}
+      <div className="task-list">
+        {
+          tasks.map((t, index) => (
+            <div className="task" key={t.id}>
+              <h3>{t.text}</h3>
+              <button onClick={() => { deleteTask(index) }}>Delete</button>
+              <button onClick={() => { toggleTask(index) }}>Done</button>
+            </div>
 
-    ))
-  }
+          ))
+        }
 
 
-</div>
+      </div>
 
       {/* footer  */}
       <footer>
