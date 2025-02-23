@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {  Doughnut } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend } from "chart.js";
 
 import './App.css'
@@ -18,6 +18,11 @@ function App() {
   // to get and hold input field value
   const [task, setTask] = useState("");
 
+  // to hold editing task index
+  const [editingIndex, setEditingIndex] = useState(null);
+
+
+
   // to store tasks list in localStorage() after each task updation
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -30,18 +35,31 @@ function App() {
   // function to add task
   const addTask = () => {
     if (task.trim() !== "") {
-      setTasks([...tasks, {
-        completed: false,
-        text: task,
-        id: Date.now()
+      if (editingIndex !== null) {
+        const updatedTasks = tasks.map((t, i) => (i === editingIndex ? { ...t, text: task } : t));
+
+        setTasks(updatedTasks);
+        setEditingIndex(null);
+      } else {
+        setTasks([...tasks, {
+          completed: false,
+          text: task,
+          id: Date.now()
+        }
+        ]);
       }
-      ]);
 
       setTask("");
+
     }
-
-
   };
+
+
+  // functions to edit task
+  const editTask = (index) => {
+    setTask(tasks[index].text);
+    setEditingIndex(index);
+  }
 
 
   // toggle task function
@@ -63,7 +81,7 @@ function App() {
   const pendingTasks = tasks.filter(t => !t.completed).length;
   const progress = tasks.length ? (completedTasks / tasks.length) * 100 : 0;
 
-  
+
 
   // doughnut chart data
   const doughnutChartData = {
@@ -97,7 +115,7 @@ function App() {
               placeholder='Add a task here '
             />
 
-            <button onClick={addTask}>Add Task</button>
+            <button onClick={addTask}> {editingIndex !== null ? "Update" : "Add Task"}</button>
           </div>
 
           {/* todo list container  */}
@@ -108,8 +126,9 @@ function App() {
                 <div className="task" key={t.id}>
                   <p>{t.text}</p>
                   <div className="task-controls">
-                    <button onClick={() => { deleteTask(index) }}>Delete</button>
+                    <button onClick={() => { editTask(index) }}>Edit</button>
                     <button onClick={() => { toggleTask(index) }}>Done</button>
+                    <button onClick={() => { deleteTask(index) }}>Delete</button>
                   </div>
 
                 </div>
@@ -120,7 +139,7 @@ function App() {
         </div>
 
         <div className="chart-container">
-        <h2> <hr /> Today Target <hr /> </h2>
+          <h2> <hr /> Today Target <hr /> </h2>
 
           <div className="chart">
             <Doughnut data={doughnutChartData} />
