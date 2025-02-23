@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import {Bar, Doughnut} from 'react-chartjs-2';
-import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, arcElement, Title, Tooltip, Legend} from "chart.js";
+import {  Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend } from "chart.js";
 
 import './App.css'
 
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, arcElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 
 function App() {
@@ -58,6 +58,23 @@ function App() {
   }
 
 
+  // to identify complete and pending tasks
+  const completedTasks = tasks.filter(t => t.completed).length;
+  const pendingTasks = tasks.filter(t => !t.completed).length;
+  const progress = tasks.length ? (completedTasks / tasks.length) * 100 : 0;
+
+  
+
+  // doughnut chart data
+  const doughnutChartData = {
+    labels: ["Completed", "Pending"],
+    datasets: [
+      {
+        data: [completedTasks, pendingTasks],
+        backgroundColor: ["#4caf50", "#f44336"],
+      },
+    ],
+  };
 
 
   return (
@@ -89,12 +106,12 @@ function App() {
             {
               tasks.map((t, index) => (
                 <div className="task" key={t.id}>
-                  <h3>{t.text}</h3>
+                  <p>{t.text}</p>
                   <div className="task-controls">
-                  <button onClick={() => { deleteTask(index) }}>Delete</button>
-                  <button onClick={() => { toggleTask(index) }}>Done</button>
+                    <button onClick={() => { deleteTask(index) }}>Delete</button>
+                    <button onClick={() => { toggleTask(index) }}>Done</button>
                   </div>
-                  
+
                 </div>
 
               ))
@@ -102,6 +119,17 @@ function App() {
           </div>
         </div>
 
+        <div className="chart-container">
+        <h2> <hr /> Today Target <hr /> </h2>
+
+          <div className="chart">
+            <Doughnut data={doughnutChartData} />
+          </div>
+
+
+          <h2> <hr />  Progress : {progress}%  <hr /></h2>
+
+        </div>
       </main>
 
 
