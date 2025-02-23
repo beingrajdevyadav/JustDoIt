@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
-// import {Bar, Doughnut} from 'react-chartjs-2';
+import {Bar, Doughnut} from 'react-chartjs-2';
+import {Chart as ChartJS, CategoryScale, LinearScale, BarElement, arcElement, Title, Tooltip, Legend} from "chart.js";
+
 import './App.css'
+
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, arcElement, Title, Tooltip, Legend);
+
 
 function App() {
   // to get and store saved tasks
