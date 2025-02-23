@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-
+import { useEffect, useState } from 'react';
+// import {Bar, Doughnut} from 'react-chartjs-2';
 import './App.css'
 
 function App() {
@@ -58,38 +58,49 @@ function App() {
     <>
       {/* header  */}
       <header>
-        <h1>Just Do It</h1>
+        <h2>JustDoIt</h2>
+
       </header>
 
-      {/*  form  */}
-      <div className="form">
-        <input
-          type="text"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          placeholder='Add a task here '
-        />
+      <main>
 
-        <button onClick={addTask}>Add Task</button>
-      </div>
+        <div className="todo-app-container">
+          {/*  form  */}
+          <div className="form">
+            <input
+              type="text"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              placeholder='Add a task here '
+            />
 
-      {/* todo list container  */}
-      <div className="task-list">
-        {
-          tasks.map((t, index) => (
-            <div className="task" key={t.id}>
-              <h3>{t.text}</h3>
-              <button onClick={() => { deleteTask(index) }}>Delete</button>
-              <button onClick={() => { toggleTask(index) }}>Done</button>
-            </div>
+            <button onClick={addTask}>Add Task</button>
+          </div>
 
-          ))
-        }
+          {/* todo list container  */}
+          <div className="task-list">
+            <hr />
+            {
+              tasks.map((t, index) => (
+                <div className="task" key={t.id}>
+                  <h3>{t.text}</h3>
+                  <div className="task-controls">
+                  <button onClick={() => { deleteTask(index) }}>Delete</button>
+                  <button onClick={() => { toggleTask(index) }}>Done</button>
+                  </div>
+                  
+                </div>
 
+              ))
+            }
+          </div>
+        </div>
 
-      </div>
+      </main>
+
 
       {/* footer  */}
+
       <footer>
         <p>Just Do It By Rajdev Yadav </p>
       </footer>
