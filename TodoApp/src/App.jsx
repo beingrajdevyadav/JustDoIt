@@ -134,9 +134,9 @@ function App() {
                 <div className="task" key={t.id}>
                   <p>{t.text}</p>
                   <div className="task-controls">
-                    <button onClick={() => { editTask(index) }}>Edit</button>
-                    <button onClick={() => { toggleTask(index) }}>Done</button>
-                    <button onClick={() => { deleteTask(index) }}>Delete</button>
+                    <button onClick={() => { editTask(index) }}> <i className="fa-solid fa-pen-to-square"></i> </button>
+                    <button onClick={() => { toggleTask(index) }}>{t.completed ? <i className="fa-solid fa-check-double"></i> : <i className="fa-solid fa-check"></i>}</button>
+                    <button onClick={() => { deleteTask(index) }}><i className="fa-solid fa-trash"></i></button>
                   </div>
 
                 </div>
