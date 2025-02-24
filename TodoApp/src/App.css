@@ -46,13 +46,14 @@ main {
 }
 
 .form input {
-    padding: 10px;
+
+    padding: 15px;
     width: 72%;
 }
 
 .form button {
     width: 25%;
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
 }
 
@@ -67,11 +68,18 @@ main {
     text-transform: capitalize;
     color: #fff;
     margin-top: .3rem;
-    background-color: #00000031;
+    /* background-color: #00000031; */
+    background-image: linear-gradient( to left, #f9f9f92c, #0c2e4f92);
     padding: .5rem;
     border-radius: 5px;
+    box-shadow: 0 0 5px #00000031;
+    transition: all .5s ease;
+    cursor: pointer;
 }
-
+.task:hover{
+    background-image: linear-gradient( to left, #f9f9f92c, #0c2e4fc2);
+    box-shadow: 0 0 5px #00000052;
+}
 .task-controls {
     display: flex;
     justify-content: space-between;

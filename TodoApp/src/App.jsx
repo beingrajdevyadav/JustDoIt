@@ -132,7 +132,7 @@ function App() {
             {
               tasks.map((t, index) => (
                 <div className="task" key={t.id}>
-                  <p>{t.text}</p>
+                  <p>🎯 {t.text}</p>
                   <div className="task-controls">
                     <button className='edit' onClick={() => { editTask(index) }}> <i className="fa-solid fa-pen-to-square"></i> </button>
                     <button className='done' onClick={() => { toggleTask(index) }}>{t.completed ? <i className="fa-solid fa-check-double"></i> : <i className="fa-solid fa-check"></i>}</button>
