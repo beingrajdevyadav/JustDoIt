@@ -123,7 +123,7 @@ function App() {
               placeholder='Add a task here '
             />
 
-            <button onClick={addTask}> {editingIndex !== null ? "Update" : "Add Task"}</button>
+            <button onClick={addTask}><i className="fa-solid fa-plus"></i> {editingIndex !== null ? "Update" :  "Add Task"}</button>
           </div>
 
           {/* todo list container  */}
@@ -134,9 +134,9 @@ function App() {
                 <div className="task" key={t.id}>
                   <p>{t.text}</p>
                   <div className="task-controls">
-                    <button onClick={() => { editTask(index) }}> <i className="fa-solid fa-pen-to-square"></i> </button>
-                    <button onClick={() => { toggleTask(index) }}>{t.completed ? <i className="fa-solid fa-check-double"></i> : <i className="fa-solid fa-check"></i>}</button>
-                    <button onClick={() => { deleteTask(index) }}><i className="fa-solid fa-trash"></i></button>
+                    <button className='edit' onClick={() => { editTask(index) }}> <i className="fa-solid fa-pen-to-square"></i> </button>
+                    <button className='done' onClick={() => { toggleTask(index) }}>{t.completed ? <i className="fa-solid fa-check-double"></i> : <i className="fa-solid fa-check"></i>}</button>
+                    <button className='delete' onClick={() => { deleteTask(index) }}><i className="fa-solid fa-trash"></i></button>
                   </div>
 
                 </div>
