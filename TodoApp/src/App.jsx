@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend } from "chart.js";
+import { ToastContainer, toast, Slide, Zoom, Flip, Bounce } from "react-toastify";
 
+import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
 
 
@@ -34,12 +36,13 @@ function App() {
 
   // function to add task
   const addTask = () => {
+
     if (task.trim() !== "") {
       if (editingIndex !== null) {
         const updatedTasks = tasks.map((t, i) => (i === editingIndex ? { ...t, text: task } : t));
-
         setTasks(updatedTasks);
         setEditingIndex(null);
+        toast.success("Task Updated!", { transition: Flip });
       } else {
         setTasks([...tasks, {
           completed: false,
@@ -47,6 +50,8 @@ function App() {
           id: Date.now()
         }
         ]);
+
+        toast.success("Task added!", { transition: Bounce });
       }
 
       setTask("");
@@ -59,6 +64,7 @@ function App() {
   const editTask = (index) => {
     setTask(tasks[index].text);
     setEditingIndex(index);
+    toast.info("Editing task!", { transition: Slide });
   }
 
 
@@ -66,6 +72,7 @@ function App() {
   const toggleTask = (index) => {
     const newTasks = tasks.map((t, i) => i === index ? { ...t, completed: !t.completed } : t);
     setTasks(newTasks);
+    toast.success("Task status updated!", { transition: Zoom });
   }
 
 
@@ -73,6 +80,7 @@ function App() {
   const deleteTask = (index) => {
     const remainedTasks = tasks.filter((t, i) => i !== index);
     setTasks(remainedTasks);
+    toast.error("Task deleted!", { transition: Flip })
   }
 
 
@@ -100,7 +108,7 @@ function App() {
       {/* header  */}
       <header>
         <h2>JustDoIt</h2>
-
+        <ToastContainer />
       </header>
 
       <main>
