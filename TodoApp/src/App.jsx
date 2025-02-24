@@ -146,7 +146,7 @@ function App() {
           </div>
 
 
-          <h2> <hr />  Progress : {progress}%  <hr /></h2>
+          <h2> <hr />  Progress : {Math.floor(progress)}%  <hr /></h2>
 
         </div>
       </main>
