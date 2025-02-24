@@ -108,7 +108,7 @@ function App() {
       {/* header  */}
       <header>
         <h2>JustDoIt</h2>
-        <ToastContainer />
+        <ToastContainer theme='dark' />
       </header>
 
       <main>
