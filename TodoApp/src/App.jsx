@@ -107,7 +107,7 @@ function App() {
     <>
       {/* header  */}
       <header>
-        <h2>JustDoIt</h2>
+        <h2>🎯 JustDoIt</h2>
         <ToastContainer theme='dark' />
       </header>
 
@@ -123,7 +123,7 @@ function App() {
               placeholder='Add a task here '
             />
 
-            <button onClick={addTask}><i className="fa-solid fa-plus"></i> {editingIndex !== null ? "Update" :  "Add Task"}</button>
+            <button onClick={addTask}><i className="fa-solid fa-plus"></i> {editingIndex !== null ? "Update" :  "Add"}</button>
           </div>
 
           {/* todo list container  */}

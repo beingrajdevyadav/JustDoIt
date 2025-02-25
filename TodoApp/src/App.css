@@ -165,3 +165,19 @@ footer {
     padding: 1rem;
     font-size: 12px;
 }
+
+/* # Responsiveness  */
+@media screen and (max-width:768px) {
+    main{
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    .todo-app-container{
+        width: 100%;
+        min-height: 70vh;
+        height: auto;
+    }
+    .chart-container{
+        width: 100%;
+    }
+}
